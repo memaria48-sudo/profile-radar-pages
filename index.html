@@ -1,181 +1,601 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <title>Radar Ético de Visibilidade Profissional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOR Profile Radar</title>
   <style>
-    body { margin:0; background:#f5f7fa; color:#172033; font-family:Inter,Segoe UI,sans-serif; }
-    main { max-width:1060px; margin:0 auto; padding:34px 18px 70px; }
-    header, section { background:white; border:1px solid #d9e1ea; border-radius:10px; padding:22px; margin-bottom:16px; box-shadow:0 12px 30px rgba(23,32,51,.07); }
-    h1, h2 { margin:0 0 10px; }
-    p, li { line-height:1.55; }
-    .meta { color:#5d6b7f; }
-    .badge { display:inline-block; border:1px solid #cfe0f1; background:#edf5fc; color:#245d94; border-radius:999px; padding:7px 11px; font-weight:800; margin:4px 6px 4px 0; }
-    .card { border:1px solid #e0e7ef; border-radius:8px; padding:16px; margin:12px 0; background:#fbfdff; }
-    .card h3 { margin:8px 0; }
-    details { margin-top:12px; }
-    summary { cursor:pointer; color:#245d94; font-weight:900; }
-    .actions { margin:12px 0 0; padding-left:24px; }
-    .profile-line { font-weight:800; color:#344257; }
-    .safety { border-left:4px solid #245d94; }
-    a { color:#245d94; font-weight:800; }
+    :root {
+      --ink: #071427;
+      --navy: #071b31;
+      --muted: #536277;
+      --line: #d8e0ea;
+      --soft: #f5f7fa;
+      --card: #ffffff;
+      --blue: #245d94;
+      --gold: #ffbd12;
+      --gold-soft: #fff3cf;
+      --green-soft: #eaf7ef;
+      --shadow: 0 16px 44px rgba(7, 20, 39, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: white;
+      border-bottom: 4px solid var(--gold);
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+    .logo {
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 8px;
+      padding: 7px 13px;
+      font-size: 2.05rem;
+      font-weight: 950;
+      letter-spacing: .02em;
+      line-height: 1;
+      background: rgba(255,255,255,.05);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.15;
+    }
+    .brand p {
+      margin: 5px 0 0;
+      color: #d7e2ef;
+      font-size: .92rem;
+    }
+    .nav-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-pills span {
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-weight: 850;
+      font-size: .9rem;
+    }
+    .nav-pills .active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 42px 22px 70px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-size: .78rem;
+      margin-bottom: 8px;
+    }
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: .96;
+      letter-spacing: -.01em;
+    }
+    .hero p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin: 16px 0 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(92px, 1fr));
+      gap: 10px;
+      min-width: 310px;
+    }
+    .metric {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 15px;
+      box-shadow: var(--shadow);
+    }
+    .metric strong {
+      display: block;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .metric span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    .profile-summary {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .profile-summary strong { display: block; margin-bottom: 4px; }
+    .profile-summary span { color: var(--muted); }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #edf5fc;
+      border: 1px solid #cfe0f1;
+      color: var(--blue);
+      font-weight: 850;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+    section { margin-top: 28px; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.55rem;
+    }
+    .section-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .top-actions {
+      background: linear-gradient(135deg, var(--gold-soft), #fffaf0);
+      border: 1px solid #f1d489;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .top-card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid #f2d990;
+      border-radius: 10px;
+      padding: 16px;
+      min-height: 145px;
+    }
+    .num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: var(--gold);
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+    .top-card h3, .action-card h3, .mini-card h3 {
+      margin: 0 0 8px;
+      line-height: 1.22;
+    }
+    .top-card p, .action-card p, .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .action-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .category {
+      color: #a46c00;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .76rem;
+    }
+    .rank {
+      background: #edf5fc;
+      border: 1px solid #cfe0f1;
+      color: var(--blue);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: .78rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .label {
+      color: var(--ink);
+      font-size: .82rem;
+      font-weight: 900;
+      margin: 14px 0 4px;
+    }
+    .path {
+      margin-top: 14px;
+      background: #f6f9fc;
+      border: 1px solid #e0e8f2;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #344257;
+      font-weight: 800;
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .channel-list {
+      display: grid;
+      gap: 10px;
+    }
+    .channel {
+      border: 1px solid #e2e9f2;
+      border-radius: 9px;
+      padding: 12px 13px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      background: #fbfdff;
+    }
+    .channel-index {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #edf5fc;
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: .82rem;
+    }
+    .channel a {
+      color: var(--ink);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .channel p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      line-height: 1.4;
+      font-size: .92rem;
+    }
+    .mini-list {
+      display: grid;
+      gap: 12px;
+    }
+    .mini-card {
+      border-left: 4px solid var(--gold);
+      background: #fbfdff;
+      border-radius: 8px;
+      padding: 13px 14px;
+    }
+
+    .learning {
+      background: var(--green-soft);
+      border: 1px solid #bde5c8;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .learning-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .feedback-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .feedback-chips span {
+      border: 1px solid #b9d8c2;
+      background: white;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-weight: 850;
+      font-size: .86rem;
+    }
+    .safety {
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 28px;
+      padding-top: 16px;
+      font-size: .94rem;
+    }
+
+    @media (max-width: 860px) {
+      .topbar-inner, .hero, .profile-summary, .lower-grid, .learning-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+      .topbar-inner, .brand, .profile-summary { align-items: start; }
+      .nav-pills, .pill-row { justify-content: flex-start; }
+      .metrics, .top-grid, .action-grid { grid-template-columns: 1fr; min-width: 0; }
+      main { padding: 30px 16px 56px; }
+    }
   </style>
 </head>
 <body>
-<main>
-  <header>
-    <div class="badge">Profile Mode · SCIP · Groq 6</div>
-    <h1>Radar Ético de Visibilidade Profissional</h1>
-    <p class="meta">6 ações selecionadas · 24 direções de busca · 61 canais públicos aceitos · atualizado 31.05.2026 19:19:27</p>
-    <p class="profile-line">Perfil clínico anonimizado · Brasil / online / São Paulo · temas: Traumas, Violência Sexual, Violência, Assédio Moral</p>
-    <p class="meta">Escopo: Português, Inglês, Espanhol; São Paulo, presencial, híbrido</p>
-  </header>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">SOR</div>
+        <div>
+          <h1>Strategic Opportunity Radar</h1>
+          <p>Detect signals. Connect actors. Act in time.</p>
+        </div>
+      </div>
+      <div class="nav-pills" aria-label="Produto">
+        <span>Radar</span>
+        <span>SCIP</span>
+        <span class="active">Profile Radar</span>
+      </div>
+    </div>
+  </div>
 
-  <section>
-    <h2>Top 3 ações desta semana</h2>
-    <ol class="actions"><li>Reescrever o perfil com foco nas necessidades dos clientes, destacando a especialização em psicoterapia online e atendimento em diferentes idiomas, e garantindo que o perfil seja fácil de encontrar e entender.</li>
-<li>Criar uma busca semanal para psicóloga clínica, atendimento social, híbrido/presencial em São Paulo e clínicas/plataformas contratando</li>
-<li>Implementar funcionalidade que permita a aproximação de convênios aceitos com termos de busca clínica relevantes, melhorando a precisão das buscas e a satisfação do usuário</li></ol>
-  </section>
+  <main>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Profile Mode · SCIP + NN + Groq</div>
+        <h2>Radar Ético de Visibilidade Profissional</h2>
+        <p>Uma carteira semanal de ações para aumentar visibilidade clínica, encaminhamentos e oportunidades profissionais sem identificar ou abordar pessoas privadas.</p>
+      </div>
+      <div class="metrics" aria-label="Resumo da rodada">
+        <div class="metric"><strong>6</strong><span>ações selecionadas</span></div>
+        <div class="metric"><strong>61</strong><span>canais públicos aceitos</span></div>
+        <div class="metric"><strong>5</strong><span>canais comunitários</span></div>
+      </div>
+    </div>
 
-  <section>
-    <h2>Visibilidade direta para clientes</h2>
-    
-        <article class="card">
-          <div class="badge">#1 · Visibilidade direta</div>
-          <h3>Otimização do Perfil para Atendimento Clínico Online</h3>
-          <p><strong>O que fazer:</strong> Reescrever o perfil com foco nas necessidades dos clientes, destacando a especialização em psicoterapia online e atendimento em diferentes idiomas, e garantindo que o perfil seja fácil de encontrar e entender.</p>
-          <p><strong>Por que ajuda:</strong> Melhora a descoberta do perfil por pessoas que procuram atendimento clínico online ou em São Paulo de forma ética, aumentando a visibilidade e a credibilidade do profissional.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Busca por problema -&gt; perfil profissional -&gt; agendamento voluntário</p>
-          <p><strong>Tipo de fonte:</strong> Auditoria de perfil</p>
+    <div class="profile-summary">
+      <div>
+        <strong>Perfil clínico anonimizado</strong>
+        <span>Brasil / online / São Paulo · Português, Inglês e Espanhol · atualizado 31.05.2026</span>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Trauma</span>
+        <span class="pill">Violência</span>
+        <span class="pill">Assédio moral</span>
+        <span class="pill">Saúde mental</span>
+      </div>
+    </div>
+
+    <section class="top-actions">
+      <div class="section-head">
+        <div>
+          <h2>Top 3 ações desta semana</h2>
+          <p>O objetivo é sair da análise com uma decisão clara para os próximos passos.</p>
+        </div>
+      </div>
+      <div class="top-grid">
+        <article class="top-card">
+          <div class="num">1</div>
+          <h3>Otimizar o perfil</h3>
+          <p>Reescrever a abertura com foco em terapia online, trauma, assédio moral e atendimento multilíngue.</p>
+        </article>
+        <article class="top-card">
+          <div class="num">2</div>
+          <h3>Conectar convênios e busca</h3>
+          <p>Deixar planos aceitos próximos de termos clínicos que as pessoas realmente pesquisam.</p>
+        </article>
+        <article class="top-card">
+          <div class="num">3</div>
+          <h3>Publicar conteúdo da semana</h3>
+          <p>Preparar um post curto sobre como o assédio moral pode afetar a saúde mental.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Ações com maior potencial de visibilidade</h2>
+          <p>Selecionadas pelo SCIP a partir de fit com perfil, intenção de cliente, segurança, canal e potencial de conversão.</p>
+        </div>
+      </div>
+      <div class="action-grid">
+        <article class="action-card">
+          <div class="card-top"><span class="category">Visibilidade direta</span><span class="rank">#1</span></div>
+          <h3>Otimização do perfil para atendimento clínico online</h3>
+          <div class="label">O que fazer</div>
+          <p>Reescrever as primeiras linhas com termos claros: psicoterapia online, trauma, violência, assédio moral, São Paulo e atendimento em PT/EN/ES.</p>
+          <div class="label">Por que ajuda</div>
+          <p>Facilita que a pessoa encontre o perfil pelo problema que vive, não apenas pelo nome da profissional.</p>
+          <div class="path">Busca por problema → perfil → agendamento voluntário</div>
         </article>
 
-
-        <article class="card">
-          <div class="badge">#2 · Visibilidade direta</div>
-          <h3>Otimizar Conexão entre Convênios e Termos de Busca Clínica</h3>
-          <p><strong>O que fazer:</strong> Implementar funcionalidade que permita a aproximação de convênios aceitos com termos de busca clínica relevantes, melhorando a precisão das buscas e a satisfação do usuário</p>
-          <p><strong>Por que ajuda:</strong> Melhora a experiência do usuário ao buscar por planos de saúde e necessidades clínicas específicas, aumentando a visibilidade dos profissionais de saúde que aceitam determinados convênios</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Busca por convênio -&gt; perfil do profissional aparece -&gt; agendamento de consulta</p>
-          <p><strong>Tipo de fonte:</strong> Visibilidade por convênio</p>
+        <article class="action-card">
+          <div class="card-top"><span class="category">Convênios + busca</span><span class="rank">#2</span></div>
+          <h3>Conectar planos aceitos a termos clínicos</h3>
+          <div class="label">O que fazer</div>
+          <p>Quando a plataforma permitir, aproximar convênios aceitos de buscas como trauma, terapia online e psicóloga em São Paulo.</p>
+          <div class="label">Por que ajuda</div>
+          <p>Aumenta a chance de aparecer em buscas com intenção real de agendamento.</p>
+          <div class="path">Busca por convênio → perfil compatível → consulta</div>
         </article>
 
-
-        <article class="card">
-          <div class="badge">#3 · Conteúdo</div>
-          <h3>Assédio Moral e Saúde Mental no Trabalho: Um Guia para Entender e Prevenir</h3>
-          <p><strong>O que fazer:</strong> Desenvolver um guia detalhado sobre assédio moral e saúde mental, incluindo sinais de alerta, estratégias de prevenção e recursos para apoio</p>
-          <p><strong>Por que ajuda:</strong> Ajuda a criar uma consciência sobre a importância da saúde mental no ambiente de trabalho, oferecendo informações valiosas para prevenção e apoio</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Pesquisa sobre assédio moral -&gt; Leitura do conteúdo educativo -&gt; Desenvolvimento de confiança -&gt; Visita ao perfil para mais informações -&gt; Agendamento de consultas ou workshops</p>
-          <p><strong>Tipo de fonte:</strong> Plano de conteúdo</p>
+        <article class="action-card">
+          <div class="card-top"><span class="category">Conteúdo</span><span class="rank">#3</span></div>
+          <h3>Assédio moral e saúde mental no trabalho</h3>
+          <div class="label">O que fazer</div>
+          <p>Publicar um texto educativo sobre sinais emocionais comuns após assédio moral e caminhos seguros de cuidado.</p>
+          <div class="label">Por que ajuda</div>
+          <p>Cria confiança sem transformar sofrimento individual em lead.</p>
+          <div class="path">Conteúdo educativo → confiança → visita ao perfil</div>
         </article>
 
-
-        <article class="card">
-          <div class="badge">#4 · Plataforma clínica</div>
-          <h3>Ampliando Visibilidade Profissional em Plataformas de Saúde</h3>
-          <p><strong>O que fazer:</strong> Revisar canais públicos e preparar abordagens educativas, institucionais, de candidatura ou de visibilidade</p>
-          <p><strong>Por que ajuda:</strong> Aumenta a visibilidade do perfil, facilita o agendamento e promove a carreira profissional de forma ética e institucional</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Plataforma de saúde -&gt; Visibilidade do perfil -&gt; Agendamento</p>
-          <p><strong>Tipo de fonte:</strong> Clínica ou plataforma</p>
+        <article class="action-card">
+          <div class="card-top"><span class="category">Plataforma clínica</span><span class="rank">#4</span></div>
+          <h3>Revisar presença em plataformas de saúde</h3>
+          <div class="label">O que fazer</div>
+          <p>Conferir se idiomas, atendimento online, localização e temas clínicos aparecem nos campos pesquisáveis.</p>
+          <div class="label">Por que ajuda</div>
+          <p>Transforma atributos fortes do perfil em filtros de descoberta, não apenas em texto escondido.</p>
+          <div class="path">Filtro de plataforma → perfil encontrado → agendamento</div>
         </article>
+      </div>
+    </section>
 
-  </section>
+    <section>
+      <div class="lower-grid">
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <h2>Canais públicos para testar presença</h2>
+              <p>Contagens agregadas por canal. Nada de usuários, histórias pessoais, DMs ou abordagem de crise.</p>
+            </div>
+          </div>
+          <div class="channel-list">
+            <div class="channel">
+              <div class="channel-index">1</div>
+              <div><a href="https://cpah.com.br/gifted-debate/">cpah.com.br</a><p>Tema: superdotação e altas habilidades. Ação: testar conteúdo educativo específico, se as regras permitirem.</p></div>
+            </div>
+            <div class="channel">
+              <div class="channel-index">2</div>
+              <div><a href="https://cpmhd.com.br/community/">cpmhd.com.br</a><p>Tema: psicologia e saúde mental. Ação: conteúdo geral, sem responder relatos de crise.</p></div>
+            </div>
+            <div class="channel">
+              <div class="channel-index">3</div>
+              <div><a href="https://www.mentalhealthforum.net/forum/forums/trauma-physical-sexual-and-mental-abuse-forum.333/">mentalhealthforum.net</a><p>Tema: trauma e saúde mental. Ação: observar regras e usar apenas educação geral.</p></div>
+            </div>
+            <div class="channel">
+              <div class="channel-index">4</div>
+              <div><a href="https://www.reddit.com/r/PsicologiaBR/">reddit.com/r/PsicologiaBR</a><p>Tema: psicologia. Ação: participar somente se posts profissionais educativos forem aceitos.</p></div>
+            </div>
+            <div class="channel">
+              <div class="channel-index">5</div>
+              <div><a href="https://www.tdhbrasil.org/community/forum-brasileiro-atencao-sexual/">tdhbrasil.org</a><p>Tema: atenção sexual e apoio institucional. Ação: avaliar como canal de referência pública.</p></div>
+            </div>
+          </div>
+        </div>
 
-  <section>
-    <h2>Canais de encaminhamento / parcerias</h2>
-    <p class="meta">Nenhuma ação selecionada nesta trilha.</p>
-  </section>
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <h2>Oportunidades profissionais complementares</h2>
+              <p>Trilha para trabalho remunerado, credenciamento e presença institucional.</p>
+            </div>
+          </div>
+          <div class="mini-list">
+            <article class="mini-card">
+              <h3>Vagas clínicas em São Paulo</h3>
+              <p>Criar busca semanal para posições presenciais, híbridas e atendimento social.</p>
+            </article>
+            <article class="mini-card">
+              <h3>Credenciamento em clínicas e plataformas</h3>
+              <p>Preparar um perfil institucional curto para candidatura ou cadastro profissional.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Canais comunitários recomendados</h2>
-    <p class="meta">Somente contagens agregadas por canal. O radar não coleta nomes, histórias pessoais ou links de usuários.</p>
-    
-        <article class="card">
-          <div class="badge">#1 · Canal comunitário agregado</div>
-          <h3><a href="https://cpah.com.br/gifted-debate/">Canal comunitário agregado: cpah.com.br (1 menções temáticas)</a></h3>
-          <p><strong>Menções temáticas somadas:</strong> 1 · superdotação e altas habilidades</p>
-          <p><strong>O que fazer:</strong> Verificar regras da comunidade e, se permitido, publicar conteúdo educativo geral sobre superdotação e altas habilidades; não responder relatos de crise e não enviar mensagens privadas.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Comunidade pública -&gt; conteúdo educativo geral -&gt; confiança -&gt; visita voluntária ao perfil.</p>
-          <p><strong>Regra ética:</strong> recomendação em nível de canal; sem nomes de usuários, relatos pessoais, mensagens privadas ou abordagem de crise.</p>
-          <p><strong>Tipo de fonte:</strong> Comunidade/fórum agregado</p>
-        </article>
+    <section class="learning">
+      <div class="section-head">
+        <div>
+          <h2>Aprendizado por feedback</h2>
+          <p>A versão interna usa feedback para ajustar o ranqueamento antes da próxima seleção SCIP.</p>
+        </div>
+        <span class="pill">NN + SCIP</span>
+      </div>
+      <div class="learning-grid">
+        <div>
+          <div class="label">Como melhora</div>
+          <p>Feedback humano atualiza memória de padrões: tipo de canal, intenção de cliente, segurança, tema, ação recomendada e resultado observado.</p>
+        </div>
+        <div>
+          <div class="label">Sinais de feedback</div>
+          <div class="feedback-chips">
+            <span>Útil</span>
+            <span>Fraco</span>
+            <span>Canal errado</span>
+            <span>Boa ideia, baixa conversão</span>
+            <span>Não relevante</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-        <article class="card">
-          <div class="badge">#2 · Canal comunitário agregado</div>
-          <h3><a href="https://cpmhd.com.br/community/">Canal comunitário agregado: cpmhd.com.br (1 menções temáticas)</a></h3>
-          <p><strong>Menções temáticas somadas:</strong> 1 · psicologia/saúde mental</p>
-          <p><strong>O que fazer:</strong> Verificar regras da comunidade e, se permitido, publicar conteúdo educativo geral sobre psicologia/saúde mental; não responder relatos de crise e não enviar mensagens privadas.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Comunidade pública -&gt; conteúdo educativo geral -&gt; confiança -&gt; visita voluntária ao perfil.</p>
-          <p><strong>Regra ética:</strong> recomendação em nível de canal; sem nomes de usuários, relatos pessoais, mensagens privadas ou abordagem de crise.</p>
-          <p><strong>Tipo de fonte:</strong> Comunidade/fórum agregado</p>
-        </article>
-
-
-        <article class="card">
-          <div class="badge">#3 · Canal comunitário agregado</div>
-          <h3><a href="https://www.mentalhealthforum.net/forum/forums/trauma-physical-sexual-and-mental-abuse-forum.333/">Canal comunitário agregado: mentalhealthforum.net (1 menções temáticas)</a></h3>
-          <p><strong>Menções temáticas somadas:</strong> 1 · psicologia/saúde mental</p>
-          <p><strong>O que fazer:</strong> Verificar regras da comunidade e, se permitido, publicar conteúdo educativo geral sobre psicologia/saúde mental; não responder relatos de crise e não enviar mensagens privadas.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Comunidade pública -&gt; conteúdo educativo geral -&gt; confiança -&gt; visita voluntária ao perfil.</p>
-          <p><strong>Regra ética:</strong> recomendação em nível de canal; sem nomes de usuários, relatos pessoais, mensagens privadas ou abordagem de crise.</p>
-          <p><strong>Tipo de fonte:</strong> Comunidade/fórum agregado</p>
-        </article>
-
-
-        <article class="card">
-          <div class="badge">#4 · Canal comunitário agregado</div>
-          <h3><a href="https://www.reddit.com/r/PsicologiaBR/">Canal comunitário agregado: reddit.com (1 menções temáticas)</a></h3>
-          <p><strong>Menções temáticas somadas:</strong> 1 · psicologia/saúde mental</p>
-          <p><strong>O que fazer:</strong> Verificar regras da comunidade e, se permitido, publicar conteúdo educativo geral sobre psicologia/saúde mental; não responder relatos de crise e não enviar mensagens privadas.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Comunidade pública -&gt; conteúdo educativo geral -&gt; confiança -&gt; visita voluntária ao perfil.</p>
-          <p><strong>Regra ética:</strong> recomendação em nível de canal; sem nomes de usuários, relatos pessoais, mensagens privadas ou abordagem de crise.</p>
-          <p><strong>Tipo de fonte:</strong> Comunidade/fórum agregado</p>
-        </article>
-
-
-        <article class="card">
-          <div class="badge">#5 · Canal comunitário agregado</div>
-          <h3><a href="https://www.tdhbrasil.org/community/forum-brasileiro-atencao-sexual/">Canal comunitário agregado: tdhbrasil.org (1 menções temáticas)</a></h3>
-          <p><strong>Menções temáticas somadas:</strong> 1 · psicologia/saúde mental</p>
-          <p><strong>O que fazer:</strong> Verificar regras da comunidade e, se permitido, publicar conteúdo educativo geral sobre psicologia/saúde mental; não responder relatos de crise e não enviar mensagens privadas.</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Comunidade pública -&gt; conteúdo educativo geral -&gt; confiança -&gt; visita voluntária ao perfil.</p>
-          <p><strong>Regra ética:</strong> recomendação em nível de canal; sem nomes de usuários, relatos pessoais, mensagens privadas ou abordagem de crise.</p>
-          <p><strong>Tipo de fonte:</strong> Comunidade/fórum agregado</p>
-        </article>
-
-  </section>
-
-  <section>
-    <h2>Oportunidades de carreira / institucionais</h2>
-    
-        <article class="card">
-          <div class="badge">#1 · Carreira</div>
-          <h3>Oportunidades Clínicas em São Paulo</h3>
-          <p><strong>O que fazer:</strong> Criar uma busca semanal para psicóloga clínica, atendimento social, híbrido/presencial em São Paulo e clínicas/plataformas contratando</p>
-          <p><strong>Por que ajuda:</strong> Amplia oportunidades remuneradas além de clientes individuais e aproveita o sinal público de abertura a ofertas</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Vaga pública -&gt; candidatura -&gt; entrevista ou credenciamento</p>
-          <p><strong>Tipo de fonte:</strong> career_positioning</p>
-        </article>
-
-
-        <article class="card">
-          <div class="badge">#2 · Contratação/credenciamento</div>
-          <h3><a href="https://www.vagas.com.br/vagas-de-psicologa-clinica-em-sao-paulo">Otimização de Perfil para Vagas de Psicologia Clínica</a></h3>
-          <p><strong>O que fazer:</strong> Preparar uma abordagem educativa e institucional para destacar habilidades e experiências relevantes</p>
-          <p><strong>Por que ajuda:</strong> Aumenta as chances de ser encontrado por empregadores e aumenta a credibilidade profissional</p>
-          <p><strong>Caminho até clientes/trabalho:</strong> Vaga/credenciamento -&gt; candidatura ou cadastro -&gt; trabalho remunerado</p>
-          <p><strong>Tipo de fonte:</strong> Vaga ou demanda pública</p>
-        </article>
-
-  </section>
-
-  <section class="safety">
-    <h2>Nota de segurança</h2>
-    <p>O radar usa apenas canais públicos e nunca identifica ou aborda pessoas privadas.</p>
-  </section>
-</main>
+    <p class="safety">Nota de segurança: o radar usa apenas canais públicos e nunca identifica, ranqueia ou aborda pessoas privadas. Fóruns e comunidades são tratados como canais agregados de visibilidade educativa, não como listas de leads.</p>
+  </main>
 </body>
 </html>
-
