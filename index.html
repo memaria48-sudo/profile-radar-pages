@@ -48,14 +48,22 @@
       min-width: 0;
     }
     .logo {
+      width: 150px;
+      height: 54px;
       border: 1px solid rgba(255,255,255,.25);
       border-radius: 8px;
-      padding: 7px 13px;
-      font-size: 2.05rem;
-      font-weight: 950;
-      letter-spacing: .02em;
-      line-height: 1;
+      padding: 5px 10px;
       background: rgba(255,255,255,.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .logo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .brand h1 {
       margin: 0;
@@ -398,7 +406,7 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo">SOR</div>
+        <div class="logo"><img src="sor-logo.png" alt="SOR" /></div>
         <div>
           <h1>Strategic Opportunity Radar</h1>
           <p>Detect signals. Connect actors. Act in time.</p>
