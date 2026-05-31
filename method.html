@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Método · SOR Profile Radar</title>
+  <style>
+    :root {
+      --ink: #071427;
+      --navy: #071b31;
+      --muted: #536277;
+      --line: #d8e0ea;
+      --soft: #f5f7fa;
+      --card: #ffffff;
+      --blue: #245d94;
+      --gold: #ffbd12;
+      --gold-soft: #fff3cf;
+      --shadow: 0 16px 44px rgba(7, 20, 39, .08);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--soft); color: var(--ink); font-family: Inter, "Segoe UI", Arial, sans-serif; }
+    .topbar { background: var(--navy); color: white; border-bottom: 4px solid var(--gold); }
+    .topbar-inner { max-width: 1180px; margin: 0 auto; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .logo { width: 150px; height: 54px; border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 5px 10px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .brand h1 { margin: 0; font-size: 1.12rem; line-height: 1.15; }
+    .brand p { margin: 5px 0 0; color: #d7e2ef; font-size: .92rem; }
+    .nav-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-pills a { border: 1px solid rgba(255,255,255,.24); border-radius: 999px; padding: 9px 14px; color: white; text-decoration: none; font-weight: 850; font-size: .9rem; }
+    .nav-pills a:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
+    .nav-pills .active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    main { max-width: 1120px; margin: 0 auto; padding: 42px 22px 70px; }
+    .hero { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 24px; }
+    .eyebrow { color: var(--blue); font-weight: 900; text-transform: uppercase; letter-spacing: .05em; font-size: .78rem; margin-bottom: 8px; }
+    h2 { margin: 0; font-size: clamp(2.1rem, 4vw, 3.8rem); line-height: .98; }
+    h3 { margin: 0 0 8px; }
+    p, li { color: var(--muted); line-height: 1.55; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; box-shadow: var(--shadow); }
+    .num { width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--gold); font-weight: 950; margin-bottom: 14px; }
+    .wide { margin-top: 18px; background: var(--gold-soft); border: 1px solid #f1d489; border-radius: 12px; padding: 22px; box-shadow: var(--shadow); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chips span { border: 1px solid #cfe0f1; background: white; color: var(--blue); border-radius: 999px; padding: 8px 11px; font-weight: 850; font-size: .86rem; }
+    .back { display: inline-flex; margin-top: 22px; border-radius: 999px; background: var(--gold); color: var(--ink); padding: 11px 16px; font-weight: 950; text-decoration: none; }
+    .site-footer { margin-top: 44px; background: var(--navy); color: white; border-top: 4px solid var(--gold); }
+    .footer-inner { max-width: 1180px; margin: 0 auto; padding: 24px 22px; display: flex; justify-content: space-between; gap: 18px; align-items: center; flex-wrap: wrap; }
+    .footer-inner strong { font-weight: 950; }
+    .footer-inner span { color: #d7e2ef; }
+    @media (max-width: 860px) {
+      .topbar-inner { display: grid; align-items: start; }
+      .nav-pills { justify-content: flex-start; }
+      .grid { grid-template-columns: 1fr; }
+      main { padding: 30px 16px 56px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo"><img src="sor-logo.png" alt="SOR" /></div>
+        <div>
+          <h1>Strategic Opportunity Radar</h1>
+          <p>Detect signals. Connect actors. Act in time.</p>
+        </div>
+      </div>
+      <div class="nav-pills" aria-label="Produto">
+        <a href="https://memaria48-sudo.github.io/expert-funicular/zirp_berichte/zirp_dashboard.html">Radar</a>
+        <a href="https://memaria48-sudo.github.io/expert-funicular/zirp_berichte/scip_archive.html">SCIP</a>
+        <a href="index.html">Profile Radar</a>
+        <a class="active" href="method.html">Método</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Método · Profile Radar</div>
+      <h2>Como o radar transforma sinais públicos em ações</h2>
+      <p>Esta página explica o método em linguagem de produto. A versão pública não expõe código, dados internos, perfis identificáveis ou arquivos de pontuação.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="num">1</div>
+        <h3>Descoberta segura</h3>
+        <p>O radar observa canais públicos, organizações, plataformas, diretórios, comunidades e sinais de busca. Pessoas privadas, relatos de crise e histórias individuais não viram leads.</p>
+      </article>
+      <article class="card">
+        <div class="num">2</div>
+        <h3>Seleção SCIP</h3>
+        <p>Cada ação candidata recebe um valor de portfólio. O SCIP seleciona um conjunto equilibrado, evitando duplicação de canais, excesso de um único tema e ações inseguras.</p>
+      </article>
+      <article class="card">
+        <div class="num">3</div>
+        <h3>Camada neural de feedback</h3>
+        <p>Na versão interna, avaliações humanas alimentam uma camada de aprendizado que calibra próximas rodadas: quais canais foram úteis, quais ações foram fracas e quais temas geraram melhor conversão ética.</p>
+      </article>
+    </section>
+
+    <section class="wide">
+      <h3>O que a rede de feedback melhora</h3>
+      <p>O aprendizado não identifica pessoas vulneráveis. Ele melhora padrões de decisão: tipo de canal, intenção de cliente, clareza da ação, segurança, relevância temática e resultado observado.</p>
+      <div class="chips">
+        <span>Útil</span>
+        <span>Fraco</span>
+        <span>Canal errado</span>
+        <span>Boa ideia, baixa conversão</span>
+        <span>Não relevante</span>
+      </div>
+    </section>
+
+    <section class="wide">
+      <h3>Regra ética principal</h3>
+      <p>O Profile Radar recomenda canais e ações públicas. Ele não identifica, ranqueia, contacta ou transforma pessoas privadas em oportunidades comerciais.</p>
+      <a class="back" href="index.html">Voltar ao Profile Radar</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <strong>SOR · Strategic Opportunity Radar</strong>
+      <span>© 2026 SOR / SCIP method, scoring logic and convening radar concept. All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>

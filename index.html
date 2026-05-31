@@ -81,12 +81,19 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-    .nav-pills span {
+    .nav-pills a {
       border: 1px solid rgba(255,255,255,.24);
       border-radius: 999px;
       padding: 9px 14px;
       font-weight: 850;
       font-size: .9rem;
+      color: white;
+      text-decoration: none;
+      transition: background .16s ease, border-color .16s ease, color .16s ease;
+    }
+    .nav-pills a:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.4);
     }
     .nav-pills .active {
       background: var(--gold);
@@ -356,31 +363,33 @@
       padding: 13px 14px;
     }
 
-    .learning {
-      background: var(--green-soft);
-      border: 1px solid #bde5c8;
+    .method-card {
+      background: var(--card);
+      border: 1px solid var(--line);
       border-radius: 12px;
       padding: 20px;
       box-shadow: var(--shadow);
-    }
-    .learning-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
     }
-    .feedback-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
+    .method-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
     }
-    .feedback-chips span {
-      border: 1px solid #b9d8c2;
-      background: white;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
-      padding: 8px 11px;
-      font-weight: 850;
-      font-size: .86rem;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 11px 16px;
+      font-weight: 950;
+      text-decoration: none;
+      white-space: nowrap;
     }
     .safety {
       color: var(--muted);
@@ -389,9 +398,27 @@
       padding-top: 16px;
       font-size: .94rem;
     }
+    .site-footer {
+      margin-top: 44px;
+      background: var(--navy);
+      color: white;
+      border-top: 4px solid var(--gold);
+    }
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .footer-inner strong { font-weight: 950; }
+    .footer-inner span { color: #d7e2ef; }
 
     @media (max-width: 860px) {
-      .topbar-inner, .hero, .profile-summary, .lower-grid, .learning-grid {
+      .topbar-inner, .hero, .profile-summary, .lower-grid, .method-card {
         grid-template-columns: 1fr;
         display: grid;
       }
@@ -413,9 +440,10 @@
         </div>
       </div>
       <div class="nav-pills" aria-label="Produto">
-        <span>Radar</span>
-        <span>SCIP</span>
-        <span class="active">Profile Radar</span>
+        <a href="https://memaria48-sudo.github.io/expert-funicular/zirp_berichte/zirp_dashboard.html">Radar</a>
+        <a href="https://memaria48-sudo.github.io/expert-funicular/zirp_berichte/scip_archive.html">SCIP</a>
+        <a class="active" href="index.html">Profile Radar</a>
+        <a href="method.html">Método</a>
       </div>
     </div>
   </div>
@@ -423,7 +451,7 @@
   <main>
     <div class="hero">
       <div>
-        <div class="eyebrow">Profile Mode · SCIP + NN + Groq</div>
+        <div class="eyebrow">Profile Mode · Ethical Visibility Portfolio</div>
         <h2>Radar Ético de Visibilidade Profissional</h2>
         <p>Uma carteira semanal de ações para aumentar visibilidade clínica, encaminhamentos e oportunidades profissionais sem identificar ou abordar pessoas privadas.</p>
       </div>
@@ -565,8 +593,12 @@
           </div>
           <div class="mini-list">
             <article class="mini-card">
-              <h3>Vagas clínicas em São Paulo</h3>
-              <p>Criar busca semanal para posições presenciais, híbridas e atendimento social.</p>
+              <h3><a href="https://www.vagas.com.br/vagas-em-sao-paulo">Vagas.com.br · São Paulo</a></h3>
+              <p>Canal amplo para monitorar vagas presenciais, híbridas e institucionais em São Paulo.</p>
+            </article>
+            <article class="mini-card">
+              <h3>Busca clínica filtrada</h3>
+              <p>Usar termos como psicóloga clínica, atendimento social, saúde mental e plataformas de saúde.</p>
             </article>
             <article class="mini-card">
               <h3>Credenciamento em clínicas e plataformas</h3>
@@ -577,33 +609,22 @@
       </div>
     </section>
 
-    <section class="learning">
-      <div class="section-head">
-        <div>
-          <h2>Aprendizado por feedback</h2>
-          <p>A versão interna usa feedback para ajustar o ranqueamento antes da próxima seleção SCIP.</p>
-        </div>
-        <span class="pill">NN + SCIP</span>
+    <section class="method-card">
+      <div>
+        <div class="eyebrow">Método e melhoria contínua</div>
+        <h2>Como o radar aprende sem expor dados privados</h2>
+        <p>O ciclo interno combina descoberta pública, seleção SCIP e feedback de utilidade para melhorar próximas rodadas. A explicação técnica fica em uma página separada para não pesar a leitura principal.</p>
       </div>
-      <div class="learning-grid">
-        <div>
-          <div class="label">Como melhora</div>
-          <p>Feedback humano atualiza memória de padrões: tipo de canal, intenção de cliente, segurança, tema, ação recomendada e resultado observado.</p>
-        </div>
-        <div>
-          <div class="label">Sinais de feedback</div>
-          <div class="feedback-chips">
-            <span>Útil</span>
-            <span>Fraco</span>
-            <span>Canal errado</span>
-            <span>Boa ideia, baixa conversão</span>
-            <span>Não relevante</span>
-          </div>
-        </div>
-      </div>
+      <a class="button" href="method.html">Ver método</a>
     </section>
 
     <p class="safety">Nota de segurança: o radar usa apenas canais públicos e nunca identifica, ranqueia ou aborda pessoas privadas. Fóruns e comunidades são tratados como canais agregados de visibilidade educativa, não como listas de leads.</p>
   </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <strong>SOR · Strategic Opportunity Radar</strong>
+      <span>© 2026 SOR / SCIP method, scoring logic and convening radar concept. All rights reserved.</span>
+    </div>
+  </footer>
 </body>
 </html>
